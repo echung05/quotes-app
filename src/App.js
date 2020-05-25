@@ -17,12 +17,6 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    fetch("https://type.fit/api/quotes")
-      .then((resp) => resp.json())
-      .then((data) => this.setState({ quotes: data }));
-    console.log(this.state.quotes);
-  }
 
   handleClick() {
     this.setState({
@@ -30,6 +24,13 @@ class App extends Component {
       display: this.state.quotes[this.state.randomNumber].text,
       author: this.state.quotes[this.state.randomNumber].author
     });
+  }
+
+  componentDidMount() {
+    fetch("https://type.fit/api/quotes")
+      .then((resp) => resp.json())
+      .then((data) => this.setState({ quotes: data }));
+    console.log(this.state.quotes);
   }
 
   render() {
@@ -77,7 +78,7 @@ class App extends Component {
             </Card.Body>
           </Card>
 
-          <Button className="btn btn-lg btn-secondary" style={{ marginTop: "10vh" }} onClick={this.handleClick}>
+          <Button className="btn btn-lg btn-info" style={{ marginTop: "10vh" }} onClick={this.handleClick}>
             Generate Quote
         </Button>
         </Container>
